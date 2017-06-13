@@ -8,16 +8,14 @@ class AnaliseTesouraVencedora extends AnaliseJogadaImpl {
     super(proximaAnalise);
   }
 
-  public Jogador vencedor(Jogador jagador1, Jogador jagador2) {
-    if (jagador1.isJogadaTesoura() && jagador2.isJogadaPapel()) {
-      return jagador1;
-    }
+  @Override
+  protected boolean primeiroJogadorVencendo(Jogador jagador1, Jogador jagador2) {
+    return jagador1.isJogadaTesoura() && jagador2.isJogadaPapel();
+  }
 
-    if (jagador2.isJogadaTesoura() && jagador1.isJogadaPapel()) {
-      return jagador2;
-    }
-
-    return getProximaAnalise().vencedor(jagador1, jagador2);
+  @Override
+  protected boolean segundoJogadorVencendo(Jogador jagador1, Jogador jagador2) {
+    return jagador2.isJogadaTesoura() && jagador1.isJogadaPapel();
   }
 
 }
